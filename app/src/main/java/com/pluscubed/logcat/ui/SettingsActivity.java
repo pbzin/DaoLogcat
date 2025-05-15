@@ -256,24 +256,26 @@ public class SettingsActivity extends AppCompatActivity {
 
         }
 
-
         private void setBufferPreferenceSummary(String value) {
-
             String[] commaSeparated = StringUtil.split(StringUtil.nullToEmpty(value), PreferenceHelper.DELIMITER);
+            List<CharSequence> checkedEntries = new ArrayList<>();
 
-            List<CharSequence> checkedEntries = new ArrayList<CharSequence>();
+            CharSequence[] entryValues = bufferPreference.getEntryValues();
+            CharSequence[] entries = bufferPreference.getEntries();
 
             for (String entryValue : commaSeparated) {
-                int idx = ArrayUtil.indexOf(bufferPreference.getEntryValues(), entryValue);
-                checkedEntries.add(bufferPreference.getEntries()[idx]);
+                int idx = ArrayUtil.indexOf(entryValues, entryValue);
+                if (idx >= 0 && idx < entries.length) {
+                    checkedEntries.add(entries[idx]);
+                }
             }
 
             String summary = TextUtils.join(PreferenceHelper.DELIMITER, checkedEntries);
 
-            // add the word "simultaneous" to make it clearer what's going on with 2+ buffers
             if (checkedEntries.size() > 1) {
                 summary += getString(R.string.simultaneous);
             }
+
             bufferPreference.setSummary(summary);
         }
     }
