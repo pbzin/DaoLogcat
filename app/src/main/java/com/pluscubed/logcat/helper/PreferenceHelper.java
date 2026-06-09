@@ -20,6 +20,7 @@ import java.util.Set;
 public class PreferenceHelper {
 
     private static final String WIDGET_EXISTS_PREFIX = "widget_";
+    private static final String FULL_BUFFER_MIGRATION_KEY = "daologcat_full_buffer_migrated";
     private static float textSize = -1;
     private static Character defaultLogLevel = null;
     private static Boolean showTimestampAndPid = null;
@@ -227,10 +228,26 @@ public class PreferenceHelper {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         Set<String> defaultValue = new HashSet<String>();
-        defaultValue.add(context.getString(R.string.pref_buffer_choice_main_value));
+        defaultValue.add(context.getString(R.string.pref_buffer_choice_all_value));
         String key = context.getString(R.string.pref_buffer);
+        String allBuffer = context.getString(R.string.pref_buffer_choice_all_value);
 
-        return sharedPrefs.getStringSet(key, defaultValue);
+        if (!sharedPrefs.getBoolean(FULL_BUFFER_MIGRATION_KEY, false)) {
+            sharedPrefs.edit()
+                    .putStringSet(key, defaultValue)
+                    .putBoolean(FULL_BUFFER_MIGRATION_KEY, true)
+                    .apply();
+            return defaultValue;
+        }
+
+        Set<String> buffers = new HashSet<String>(sharedPrefs.getStringSet(key, defaultValue));
+        if (buffers.contains(allBuffer)) {
+            Set<String> allOnly = new HashSet<String>();
+            allOnly.add(allBuffer);
+            return allOnly;
+        }
+
+        return buffers;
     }
 
     public static boolean getIncludeDeviceInfoPreference(Context context) {

@@ -19,6 +19,7 @@
 package com.pluscubed.logcat.data;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.pluscubed.logcat.helper.PreferenceHelper;
+import com.pluscubed.logcat.helper.ProcessInfoResolver;
 import com.pluscubed.logcat.util.LogLineAdapterUtil;
 import com.pluscubed.logcat.util.StopWatch;
 import com.pluscubed.logcat.util.UtilLogger;
@@ -274,6 +276,29 @@ public class LogLineAdapter extends RecyclerView.Adapter<LogLineViewHolder> impl
         output.setText(logLine.getLogOutput());
         //output.setTextColor(textColor);
 
+        ProcessInfo processInfo =
+                ProcessInfoResolver.getInstance().resolve(context, logLine.getProcessId());
+        TextView classificationText = (TextView) holder.itemView.findViewById(R.id.classification_text);
+        LogClassification classification = LogClassification.from(logLine, processInfo);
+        classificationText.setVisibility(classification.hasLabel() ? View.VISIBLE : View.GONE);
+        classificationText.setText(classification.getLabel());
+        classificationText.setContentDescription(classification.getSummary());
+        classificationText.setBackground(roundedBadge(context, classification.getColor()));
+
+        TextView sourceText = (TextView) holder.itemView.findViewById(R.id.source_text);
+        boolean showSource = processInfo.isKnown()
+                && (classification.hasLabel() || processInfo.isAppProcess());
+        sourceText.setVisibility(showSource ? View.VISIBLE : View.GONE);
+        sourceText.setText(processInfo.getCompactName());
+        sourceText.setContentDescription(processInfo.getDisplayName());
+        sourceText.setBackground(roundedBadge(context, sourceColor(processInfo)));
+
+        TextView classificationDetail =
+                (TextView) holder.itemView.findViewById(R.id.classification_detail_text);
+        classificationDetail.setVisibility(logLine.isExpanded() && classification.hasLabel()
+                ? View.VISIBLE : View.GONE);
+        classificationDetail.setText(classification.getSummary());
+
 
         //TAG TEXT VIEW
         TextView tag = (TextView) holder.itemView.findViewById(R.id.tag_text);
@@ -286,6 +311,9 @@ public class LogLineAdapter extends RecyclerView.Adapter<LogLineViewHolder> impl
         tag.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
         output.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
         t.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+        classificationText.setTextSize(TypedValue.COMPLEX_UNIT_SP, Math.max(8, textSize - 2));
+        sourceText.setTextSize(TypedValue.COMPLEX_UNIT_SP, Math.max(8, textSize - 2));
+        classificationDetail.setTextSize(TypedValue.COMPLEX_UNIT_SP, Math.max(8, textSize - 2));
 
         //EXPANDED INFO
         boolean extraInfoIsVisible = logLine.isExpanded()
@@ -334,6 +362,27 @@ public class LogLineAdapter extends RecyclerView.Adapter<LogLineViewHolder> impl
         synchronized (mLock) {
             return mObjects.size();
         }
+    }
+
+    private static GradientDrawable roundedBadge(Context context, int color) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setColor(color);
+        drawable.setCornerRadius(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 5, context.getResources().getDisplayMetrics()));
+        return drawable;
+    }
+
+    private static int sourceColor(ProcessInfo processInfo) {
+        if (processInfo.isAppProcess()) {
+            return 0xff455a64;
+        }
+        if (processInfo.isVendorProcess()) {
+            return 0xff33691e;
+        }
+        if (processInfo.isSystemProcess()) {
+            return 0xff0d47a1;
+        }
+        return 0xff424242;
     }
 
     public int getLogLevelLimit() {

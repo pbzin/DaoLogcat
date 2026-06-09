@@ -59,6 +59,7 @@ import com.pluscubed.logcat.helper.DialogHelper;
 import com.pluscubed.logcat.helper.DmesgHelper;
 import com.pluscubed.logcat.helper.PreferenceHelper;
 import com.pluscubed.logcat.helper.SaveLogHelper;
+import com.pluscubed.logcat.helper.SuperUserHelper;
 import com.pluscubed.logcat.intents.Intents;
 import com.pluscubed.logcat.reader.LogcatReader;
 import com.pluscubed.logcat.reader.LogcatReaderLoader;
@@ -67,6 +68,7 @@ import com.pluscubed.logcat.util.LogLineAdapterUtil;
 import com.pluscubed.logcat.util.StringUtil;
 import com.pluscubed.logcat.util.UtilLogger;
 
+import org.omnirom.logcat.BuildConfig;
 import org.omnirom.logcat.R;
 
 import java.io.File;
@@ -149,7 +151,7 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
             actionSendIntent.putExtra(Intent.EXTRA_TEXT, body);
         }
         if (attachment != null) {
-            Uri uri = FileProvider.getUriForFile(context, "org.omnirom.logcat.provider", attachment);
+            Uri uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", attachment);
             log.d("uri is: %s", uri);
             actionSendIntent.putExtra(Intent.EXTRA_STREAM, uri);
         }
@@ -206,6 +208,7 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
         setContentView(R.layout.activity_logcat);
 
         LogLine.isScrubberEnabled = PreferenceHelper.isScrubberEnabled(this);
+        requestRootInBackground();
 
         handleShortcuts(getIntent().getStringExtra("shortcut_action"));
 
@@ -235,6 +238,9 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
         ((RecyclerView) findViewById(R.id.list)).setItemAnimator(null);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setSubtitle(R.string.app_subtitle);
+        }
 
 
         ((BottomAppBar) findViewById(R.id.bottomAppBar)).setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -290,6 +296,15 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
         setUpAdapter();
 
         startLog();
+    }
+
+    private void requestRootInBackground() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SuperUserHelper.requestRoot(LogcatActivity.this);
+            }
+        }, "DaoLogcatRoot").start();
     }
 
     private void handleShortcuts(String action) {

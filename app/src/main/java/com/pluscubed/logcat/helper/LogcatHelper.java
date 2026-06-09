@@ -14,6 +14,7 @@ public class LogcatHelper {
     public static final String BUFFER_MAIN = "main";
     public static final String BUFFER_EVENTS = "events";
     public static final String BUFFER_RADIO = "radio";
+    public static final String BUFFER_ALL = "all";
 
     private static UtilLogger log = new UtilLogger(LogcatHelper.class);
 
@@ -28,9 +29,12 @@ public class LogcatHelper {
     private static List<String> getLogcatArgs(String buffer) {
         List<String> args = new ArrayList<String>(Arrays.asList("logcat", "-v", "time"));
 
+        if (buffer.equals(BUFFER_ALL)) {
+            args.add("-b");
+            args.add(BUFFER_ALL);
         // for some reason, adding -b main excludes log output from AndroidRuntime runtime exceptions,
         // whereas just leaving it blank keeps them in.  So do not specify the buffer if it is "main"
-        if (!buffer.equals(BUFFER_MAIN)) {
+        } else if (!buffer.equals(BUFFER_MAIN)) {
             args.add("-b");
             args.add(buffer);
         }

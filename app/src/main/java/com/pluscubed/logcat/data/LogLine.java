@@ -37,6 +37,7 @@ public class LogLine {
     private String timestamp;
     private boolean expanded = false;
     private boolean highlighted = false;
+    private LogClassification classification = LogClassification.NONE;
 
     public static boolean isScrubberEnabled = false;
 
@@ -67,11 +68,13 @@ public class LogLine {
             logLine.setProcessId(Integer.parseInt(matcher.group(3)));
 
             logLine.setLogOutput(originalLine.substring(matcher.end()));
+            logLine.refreshClassification();
 
         } else {
             log.d("Line doesn't match pattern: %s", originalLine);
             logLine.setLogOutput(originalLine);
             logLine.setLogLevel(-1);
+            logLine.refreshClassification();
         }
 
         return logLine;
@@ -176,6 +179,7 @@ public class LogLine {
         } else {
             this.logOutput = logOutput;
         }
+        refreshClassification();
     }
 
     public int getProcessId() {
@@ -212,5 +216,13 @@ public class LogLine {
 
     public boolean isFillerLine() {
         return getOriginalLine().length() == 0 && logLevel == -1;
+    }
+
+    public LogClassification getClassification() {
+        return classification;
+    }
+
+    private void refreshClassification() {
+        classification = LogClassification.from(this);
     }
 }

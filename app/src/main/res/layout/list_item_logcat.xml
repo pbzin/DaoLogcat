@@ -67,13 +67,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pid_text"
-        android:layout_toEndOf="@+id/log_level_text"
-        android:layout_toRightOf="@+id/log_level_text"
+        android:layout_toEndOf="@+id/source_text"
+        android:layout_toRightOf="@+id/source_text"
         android:ellipsize="end"
         android:paddingLeft="2dp"
         android:paddingRight="2dp"
         style="@style/LogcatListItem"
         tools:text="Blah blah blah a bunch of output"/>
+
+    <TextView
+        android:id="@+id/classification_detail_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/log_output_text"
+        android:layout_toEndOf="@+id/source_text"
+        android:layout_toRightOf="@+id/source_text"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:textColor="#9E9E9E"
+        style="@style/LogcatListItem"
+        tools:text="com.instagram.android: resolved app process is using dav1d"/>
+
+    <TextView
+        android:id="@+id/classification_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pid_text"
+        android:layout_toEndOf="@+id/log_level_text"
+        android:layout_toRightOf="@+id/log_level_text"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:minWidth="64dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        style="@style/LogcatListItem"
+        tools:text="APP AV1"/>
+
+    <TextView
+        android:id="@+id/source_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pid_text"
+        android:layout_toEndOf="@+id/classification_text"
+        android:layout_toRightOf="@+id/classification_text"
+        android:ellipsize="middle"
+        android:maxLines="1"
+        android:maxWidth="132dp"
+        android:minWidth="52dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        style="@style/LogcatListItem"
+        tools:text="com.reddit.frontpage"/>
 
 
 </RelativeLayout>

@@ -7,10 +7,10 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "org.omnirom.logcat"
+        applicationId "com.pb.daologcat"
         minSdk 31
         targetSdk 33
-        versionName '1.0'
+        versionName '0.1'
         versionCode 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

@@ -37,7 +37,7 @@ public class SuperUserHelper {
     private static final Pattern PID_PATTERN = Pattern.compile("\\d+");
     private static final Pattern SPACES_PATTERN = Pattern.compile("\\s+");
     private static UtilLogger log = new UtilLogger(SuperUserHelper.class);
-    private static boolean failedToObtainRoot = true;
+    private static boolean failedToObtainRoot = false;
 
     private static void showWarningDialog(final Context context) {
         Handler handler = new Handler(Looper.getMainLooper());
@@ -172,7 +172,7 @@ public class SuperUserHelper {
     public static void requestRoot(final Context context) {
         // Don't request root when read logs permission is already granted
         if(haveReadLogsPermission(context)) {
-            failedToObtainRoot = true;
+            failedToObtainRoot = false;
             return;
         }
 
@@ -204,6 +204,7 @@ public class SuperUserHelper {
                 failedToObtainRoot = true;
             } else {
                 // success
+                failedToObtainRoot = false;
                 PreferenceHelper.setJellybeanRootRan(context);
             }
 
