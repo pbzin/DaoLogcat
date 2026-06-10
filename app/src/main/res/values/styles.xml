@@ -2,7 +2,14 @@
 
     <style name="Theme.MatLog" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondaryContainer">@color/colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/colorOnSecondaryContainer</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorSurfaceVariant">@color/colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
+
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
@@ -24,7 +31,6 @@
     <style name="LogcatListItem" parent="@style/TextAppearance.Material3.BodySmall">
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="fontFamily">monospace</item>
-        <item name="lineHeight">@dimen/text_size_medium</item>
     </style>
 
     <style name="DropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
