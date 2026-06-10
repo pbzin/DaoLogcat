@@ -7,12 +7,12 @@ import android.content.Context
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColorsOptions
 
-class OmniApp : Application() {
+class DaoLogcatApp : Application() {
     override fun onCreate() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(
             this,
-            DynamicColorsOptions.Builder().setThemeOverlay(R.style.Theme_MatLog_Overlay).build()
+            DynamicColorsOptions.Builder().setThemeOverlay(R.style.Theme_DaoLogcat_Overlay).build()
         )
         createNotificationChannel()
     }

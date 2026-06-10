@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.MatLog" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.DaoLogcat" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="colorSecondaryContainer">@color/colorSecondaryContainer</item>
@@ -14,12 +14,12 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
         <item name="android:windowLightNavigationBar">?attr/isLightTheme</item>
-        <item name="android:windowSplashScreenIconBackgroundColor">@color/omni_logo_color</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/dao_logo_color</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListViewStyle</item>
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
-    <style name="Theme.MatLog.Overlay" parent="ThemeOverlay.Material3.DynamicColors.DayNight">
+    <style name="Theme.DaoLogcat.Overlay" parent="ThemeOverlay.Material3.DynamicColors.DayNight">
     </style>
 
     <style name="AlertDialogTheme" parent="Theme.Material3.DayNight.Dialog.Alert">

@@ -98,7 +98,7 @@
         <item quantity="one">Registro troppo grande; mostrando l\'ultima <xliff:g example="1" id="lines">%1$d</xliff:g> riga.</item>
         <item quantity="other">Registro troppo grande; mostrando le ultime <xliff:g example="1" id="lines">%1$d</xliff:g> righe.</item>
     </plurals>
-    <string name="toast_pref_changed_restart_required">Impostazione aggiornata. Riavvia MatLog per vedere le modifiche.</string>
+    <string name="toast_pref_changed_restart_required">Impostazione aggiornata. Riavvia DaoLogcat per vedere le modifiche.</string>
     <string name="toast_request_root">MetLog richiede l\'accesso al root (superuser) per leggere i registri.</string>
     <string name="toast_started_select_partial">Seleziona la modalità Parziale abilitata</string>
     <string name="unable_to_save_log">Impossibile salvare il registro. Hai inserito un nome del file valido?</string>

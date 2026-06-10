@@ -104,8 +104,8 @@
         <item quantity="many">Protokol je příliš veľký; zobrazuje posledných <xliff:g example="1" id="lines">%1$d</xliff:g> riadkov.</item>
         <item quantity="other">Protokol je příliš veľký; zobrazuje posledných <xliff:g example="1" id="lines">%1$d</xliff:g> riadkov.</item>
     </plurals>
-    <string name="toast_pref_changed_restart_required">Nastavenie aktualizované. Pre zobrazenie zmien reštartujte MatLog.</string>
-    <string name="toast_request_root">MatLog vyžaduje root prístup (superuser) pre čítanie protokolov.</string>
+    <string name="toast_pref_changed_restart_required">Nastavenie aktualizované. Pre zobrazenie zmien reštartujte DaoLogcat.</string>
+    <string name="toast_request_root">DaoLogcat vyžaduje root prístup (superuser) pre čítanie protokolov.</string>
     <string name="toast_started_select_partial">Vyberte \"Čiastočný režim povolený\"</string>
     <string name="unable_to_save_log">Nemožno uložiť protokol. Zadali ste platný názov súboru?</string>
     <string name="file">Súbor</string>

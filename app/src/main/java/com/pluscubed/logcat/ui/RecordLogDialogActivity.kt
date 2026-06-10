@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Text
-import com.pluscubed.logcat.ui.theme.MatLogTheme
+import com.pluscubed.logcat.ui.theme.DaoLogcatTheme
 
 class RecordLogDialogActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MatLogTheme {
+            DaoLogcatTheme {
                 Text("Recording Log Dialog")
             }
         }

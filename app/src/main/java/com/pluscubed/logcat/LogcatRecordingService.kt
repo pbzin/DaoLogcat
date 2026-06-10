@@ -23,7 +23,7 @@ import com.pluscubed.logcat.ui.LogcatActivity
 import com.pluscubed.logcat.util.ArrayUtil
 import com.pluscubed.logcat.util.LogLineAdapterUtil
 import com.pluscubed.logcat.util.UtilLogger
-import org.omnirom.logcat.OmniApp
+import org.omnirom.logcat.DaoLogcatApp
 import org.omnirom.logcat.R
 import java.io.IOException
 import java.util.*
@@ -94,7 +94,7 @@ class LogcatRecordingService : IntentService("AppTrackerService") {
             this, 0, stopRecordingIntent,
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
-        val notification = Notification.Builder(applicationContext, OmniApp.NOTIFICATION_CHANNEL_ID)
+        val notification = Notification.Builder(applicationContext, DaoLogcatApp.NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setTicker(tickerText)
             .setWhen(System.currentTimeMillis())

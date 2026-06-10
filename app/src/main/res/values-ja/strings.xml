@@ -95,8 +95,8 @@
     <plurals name="toast_log_truncated">
         <item quantity="other">ログが大きすぎます。最後の<xliff:g example="1" id="lines">%1$d</xliff:g>行を表示します。</item>
     </plurals>
-    <string name="toast_pref_changed_restart_required">設定が更新されました。MatLog を再起動して変更を確認して下さい。</string>
-    <string name="toast_request_root">MatLog はログを読み取るために Root (Superuser) アクセス権を必要とします。</string>
+    <string name="toast_pref_changed_restart_required">設定が更新されました。DaoLogcat を再起動して変更を確認して下さい。</string>
+    <string name="toast_request_root">DaoLogcat はログを読み取るために Root (Superuser) アクセス権を必要とします。</string>
     <string name="toast_started_select_partial">部分モードを有効化</string>
     <string name="unable_to_save_log">ログを保存できません。有効なファイル名を入力しましたか?</string>
     <string name="file">ファイル</string>

@@ -1,5 +1,6 @@
 package com.pluscubed.logcat.helper
 
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Handler
@@ -18,6 +19,9 @@ object SuperUserHelper {
     private val PID_PATTERN = Pattern.compile("\\d+")
 
     private fun showWarningDialog(context: Context) {
+        if (context !is Activity) {
+            return
+        }
         Handler(Looper.getMainLooper()).post {
             AlertDialog.Builder(context)
                 .setTitle(R.string.no_logs_warning_title)

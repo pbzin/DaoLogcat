@@ -18,6 +18,15 @@ class LogcatViewModel(application: Application) : AndroidViewModel(application) 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private val _status = MutableStateFlow("Starting root logcat")
+    val status: StateFlow<String> = _status
+
+    private val _filterQuery = MutableStateFlow("")
+    val filterQuery: StateFlow<String> = _filterQuery
+
+    private val _minLogLevel = MutableStateFlow(0)
+    val minLogLevel: StateFlow<Int> = _minLogLevel
+
     private var reader: LogcatReader? = null
     private var isPaused = false
     private var currentLines = mutableListOf<LogLine>()
@@ -28,20 +37,29 @@ class LogcatViewModel(application: Application) : AndroidViewModel(application) 
 
         readerJob = viewModelScope.launch {
             _isLoading.value = true
+            _status.value = "Requesting root access"
             withContext(Dispatchers.IO) {
                 try {
-                    val loader = LogcatReaderLoader.create(getApplication(), true)
+                    com.pluscubed.logcat.helper.SuperUserHelper.requestRoot(getApplication())
+                    _status.value = "Opening full logcat buffers"
+                    val loader = LogcatReaderLoader.create(getApplication(), false)
                     reader = loader.loadReader()
                     val maxLines = PreferenceHelper.getDisplayLimitPreference(getApplication())
+                    _status.value = "Waiting for log lines"
 
                     // Batching mechanism
                     launch {
                         while (isActive) {
                             if (!isPaused && currentLines.isNotEmpty()) {
                                 synchronized(currentLines) {
-                                    _logLines.value = currentLines.toList()
+                                    _logLines.value = filteredLinesLocked()
                                 }
                                 _isLoading.value = false
+                                _status.value = if (_filterQuery.value.isEmpty() && _minLogLevel.value == 0) {
+                                    "Live full capture"
+                                } else {
+                                    "Filtered live capture"
+                                }
                             }
                             delay(200) // Update UI at most every 200ms
                         }
@@ -61,7 +79,9 @@ class LogcatViewModel(application: Application) : AndroidViewModel(application) 
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
+                    _status.value = e.message ?: "Failed to open logcat"
                 } finally {
+                    _isLoading.value = false
                     stopReader()
                 }
             }
@@ -82,6 +102,56 @@ class LogcatViewModel(application: Application) : AndroidViewModel(application) 
             currentLines.clear()
         }
         _logLines.value = emptyList()
+    }
+
+    fun setFilter(query: String, minLevel: Int) {
+        _filterQuery.value = query.trim()
+        _minLogLevel.value = minLevel
+        synchronized(currentLines) {
+            _logLines.value = filteredLinesLocked()
+        }
+    }
+
+    fun clearFilter() {
+        setFilter("", 0)
+    }
+
+    fun exportVisibleLogText(): String {
+        val lines = _logLines.value.asReversed()
+        return buildString {
+            appendLine("DaoLogcat snapshot")
+            appendLine("Order: newest first")
+            appendLine("Filter: ${activeFilterDescription()}")
+            appendLine()
+            lines.forEach { appendLine(it.getOriginalLine()) }
+        }
+    }
+
+    private fun activeFilterDescription(): String {
+        val level = when (_minLogLevel.value) {
+            2 -> "Verbose and newer"
+            3 -> "Debug and newer"
+            4 -> "Info and newer"
+            5 -> "Warnings and errors"
+            6 -> "Errors only"
+            else -> "All levels"
+        }
+        val query = _filterQuery.value
+        return if (query.isEmpty()) level else "$level, text contains \"$query\""
+    }
+
+    private fun filteredLinesLocked(): List<LogLine> {
+        val query = _filterQuery.value.lowercase()
+        val minLevel = _minLogLevel.value
+        return currentLines.filter { line ->
+            val levelMatches = minLevel == 0 || line.logLevel >= minLevel
+            val queryMatches = query.isEmpty()
+                    || line.tag.orEmpty().lowercase().contains(query)
+                    || line.logOutput.orEmpty().lowercase().contains(query)
+                    || line.classification.label.lowercase().contains(query)
+                    || line.classification.summary.lowercase().contains(query)
+            levelMatches && queryMatches
+        }
     }
 
     override fun onCleared() {

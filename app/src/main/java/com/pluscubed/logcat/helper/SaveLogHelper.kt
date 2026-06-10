@@ -13,7 +13,7 @@ import java.util.zip.ZipOutputStream
 object SaveLogHelper {
     private val log = UtilLogger(SaveLogHelper::class.java)
     private const val BUFFER = 0x1000
-    private const val CATLOG_DIR = "matlog"
+    private const val CATLOG_DIR = "DaoLogcat"
     private const val SAVED_LOGS_DIR = "saved_logs"
     private const val TMP_DIR = "tmp"
     const val TEMP_LOG_FILENAME = "logcat.txt"

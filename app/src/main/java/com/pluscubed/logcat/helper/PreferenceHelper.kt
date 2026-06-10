@@ -7,8 +7,13 @@ import com.pluscubed.logcat.util.UtilLogger
 import org.omnirom.logcat.R
 
 object PreferenceHelper {
+    const val THEME_SYSTEM = 0
+    const val THEME_DARK = 1
+    const val THEME_LIGHT = 2
+
     private const val WIDGET_EXISTS_PREFIX = "widget_"
     private const val FULL_BUFFER_MIGRATION_KEY = "daologcat_full_buffer_migrated"
+    private const val THEME_MODE_KEY = "daologcat_theme_mode"
     private var textSize = -1f
     private var defaultLogLevel: Char? = null
     private var showTimestampAndPid: Boolean? = null
@@ -80,6 +85,12 @@ object PreferenceHelper {
     }
 
     @JvmStatic fun getColorScheme(context: Context): ColorScheme = ColorScheme.Default
+    @JvmStatic fun getThemeMode(context: Context): Int {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(THEME_MODE_KEY, THEME_SYSTEM)
+    }
+    @JvmStatic fun setThemeMode(context: Context, mode: Int) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(THEME_MODE_KEY, mode).apply()
+    }
     @JvmStatic fun setJellybeanRootRan(context: Context) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(context.getString(R.string.pref_ran_jellybean_su_update), true).apply()
     }

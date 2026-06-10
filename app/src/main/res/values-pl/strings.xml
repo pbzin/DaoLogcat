@@ -97,8 +97,8 @@
         <item quantity="one">Zbyt duży log; pokazano ostatnią <xliff:g example="1" id="lines">%1$d</xliff:g> linię.</item>
         <item quantity="other">Zbyt duży log; pokazano ostatnich <xliff:g example="1" id="lines">%1$d</xliff:g> linii.</item>
     </plurals>
-    <string name="toast_pref_changed_restart_required">Ustawienie zostało zaktualizowane. Uruchom ponownie MatLog, aby zobaczyć zmiany.</string>
-    <string name="toast_request_root">MatLog wymaga dostępu roota (superużytkownika) do odczytu logów.</string>
+    <string name="toast_pref_changed_restart_required">Ustawienie zostało zaktualizowane. Uruchom ponownie DaoLogcat, aby zobaczyć zmiany.</string>
+    <string name="toast_request_root">DaoLogcat wymaga dostępu roota (superużytkownika) do odczytu logów.</string>
     <string name="toast_started_select_partial">Włączono tryb częściowego wyboru</string>
     <string name="unable_to_save_log">Nie można zapisać dziennika. Czy wprowadzono prawidłową nazwę pliku?</string>
     <string name="file">Plik</string>

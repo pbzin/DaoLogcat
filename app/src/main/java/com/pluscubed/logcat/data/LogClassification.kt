@@ -89,6 +89,10 @@ class LogClassification private constructor(
                 return system("CRASH", process, "Crash signal; inspect package, stack, and process domain.")
             }
 
+            if (containsAny(tag.lowercase(Locale.US), "libc", "libsigchain", "linker", "debuggerd")) {
+                return system("NATIVE", process, "Native runtime log; check process origin before treating it as ROM issue.")
+            }
+
             if (process.isSystemProcess() || containsAny(tag.lowercase(Locale.US), "systemserver", "activitymanager",
                     "windowmanager", "connectivityservice", "appops")) {
                 return system("SYSTEM", process, "Android framework service log.")

@@ -98,8 +98,8 @@
         <item quantity="one">Log zu groß; zeigt die letzte <xliff:g example="1" id="lines">%1$d</xliff:g> Zeile.</item>
         <item quantity="other">Log zu groß. Zeige die letzten <xliff:g example="1" id="lines">%1$d</xliff:g> Zeilen.</item>
     </plurals>
-    <string name="toast_pref_changed_restart_required">Einstellung aktualisiert. MatLog neu starten, um die Änderungen zu sehen.</string>
-    <string name="toast_request_root">MatLog benötigt Root-(Superuser) Rechte um Logs lesen zu können.</string>
+    <string name="toast_pref_changed_restart_required">Einstellung aktualisiert. DaoLogcat neu starten, um die Änderungen zu sehen.</string>
+    <string name="toast_request_root">DaoLogcat benötigt Root-(Superuser) Rechte um Logs lesen zu können.</string>
     <string name="toast_started_select_partial">Teilmodus auswählen aktiviert</string>
     <string name="unable_to_save_log">Log konnte nicht gespeichert werden. Haben Sie einen gültigen Dateinamen eingegeben?</string>
     <string name="file">Datei</string>

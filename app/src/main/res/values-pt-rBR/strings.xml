@@ -99,8 +99,8 @@
         <item quantity="one"> Log muito grande; mostrando por último <xliff:g example="1" id="lines">%1$d</xliff:g> linha.</item>
         <item quantity="other">Log muito grande; mostrando por último <xliff:g example="1" id="lines">%1$d</xliff:g> linhas.</item>
     </plurals>
-    <string name="toast_pref_changed_restart_required">Configuração atualizada. Reinicie o MatLog para ver as alterações.</string>
-    <string name="toast_request_root">O MatLog requer acesso root (superusuário) para ler logs.</string>
+    <string name="toast_pref_changed_restart_required">Configuração atualizada. Reinicie o DaoLogcat para ver as alterações.</string>
+    <string name="toast_request_root">O DaoLogcat requer acesso root (superusuário) para ler logs.</string>
     <string name="toast_started_select_partial">Selecione o modo Parcial ativado</string>
     <string name="unable_to_save_log">Não foi possível salvar o log. Você digitou um nome de arquivo válido?</string>
     <string name="file">Arquivo</string>

@@ -98,8 +98,8 @@
         <item quantity="one">Günlük çok büyük; son <xliff:g example="1" id="lines">%1$d</xliff:g> satır gösteriliyor.</item>
         <item quantity="other">Günlük çok büyük; son <xliff:g example="1" id="lines">%1$d</xliff:g> satır gösteriliyor.</item>
     </plurals>
-    <string name="toast_pref_changed_restart_required">Ayarlar değiştirildi. Değişikliklerin gözükmesi için MatLog\'u tekrar başlatın.</string>
-    <string name="toast_request_root">MatLog, günlükleri okumak için root (süper kullanıcı) erişimine ihtiyaç duyuyor.</string>
+    <string name="toast_pref_changed_restart_required">Ayarlar değiştirildi. Değişikliklerin gözükmesi için DaoLogcat\'u tekrar başlatın.</string>
+    <string name="toast_request_root">DaoLogcat, günlükleri okumak için root (süper kullanıcı) erişimine ihtiyaç duyuyor.</string>
     <string name="toast_started_select_partial">Kısmî Seçim modu devrede</string>
     <string name="unable_to_save_log">Günlük kaydedilemedi. Geçerli bir dosya adı yazdınız mı?</string>
     <string name="file">Dosya</string>

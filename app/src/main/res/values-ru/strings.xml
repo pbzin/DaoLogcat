@@ -104,8 +104,8 @@
         <item quantity="many">Лог слишком большой; показываются последние <xliff:g example="1" id="lines">%1$d</xliff:g> строк.</item>
         <item quantity="other">Лог слишком большой; показываются последние <xliff:g example="1" id="lines">%1$d</xliff:g> строк.</item>
     </plurals>
-    <string name="toast_pref_changed_restart_required">Настройки обновлены. Перезапустите MatLog для просмотра изменений.</string>
-    <string name="toast_request_root">MatLog требует root (суперпользователь) доступ для чтения журналов.</string>
+    <string name="toast_pref_changed_restart_required">Настройки обновлены. Перезапустите DaoLogcat для просмотра изменений.</string>
+    <string name="toast_request_root">DaoLogcat требует root (суперпользователь) доступ для чтения журналов.</string>
     <string name="toast_started_select_partial">Режим частичного выбора включен</string>
     <string name="unable_to_save_log">Не удалось сохранить журнал. Вы ввели допустимое имя файла?</string>
     <string name="file">Файл</string>

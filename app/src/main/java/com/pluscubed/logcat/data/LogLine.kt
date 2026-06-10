@@ -4,9 +4,11 @@ package com.pluscubed.logcat.data
 import com.pluscubed.logcat.reader.ScrubberUtils
 import com.pluscubed.logcat.util.LogLineAdapterUtil
 import com.pluscubed.logcat.util.UtilLogger
+import java.util.concurrent.atomic.AtomicLong
 import java.util.regex.Pattern
 
 class LogLine {
+    val stableId: Long = nextStableId.incrementAndGet()
     var logLevel: Int = 0
     var tag: String? = null
     private var _logOutput: String? = null
@@ -43,6 +45,7 @@ class LogLine {
         )
 
         private val log = UtilLogger(LogLine::class.java)
+        private val nextStableId = AtomicLong()
         var isScrubberEnabled = false
 
         @JvmStatic
