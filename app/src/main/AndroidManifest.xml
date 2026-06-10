@@ -24,7 +24,6 @@
         <activity
             android:name="com.pluscubed.logcat.ui.LogcatActivity"
             android:configChanges="screenSize|orientation"
-            android:launchMode="singleInstance"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
