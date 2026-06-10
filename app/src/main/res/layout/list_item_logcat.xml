@@ -1,129 +1,127 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?selectableItemBackground"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp">
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="?selectableItemBackground"
-                android:orientation="horizontal"
-                android:paddingBottom="1dp"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
-                android:paddingTop="2dp">
-
-    <TextView
-        android:id="@+id/pid_text"
-        android:layout_width="@dimen/pid_width"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:maxLines="1"
-        android:paddingEnd="2dp"
-        android:paddingRight="2dp"
-        style="@style/LogcatListItem"
-        tools:ignore="RtlSymmetry"
-        tools:text="6177"/>
-
-    <TextView
-        android:id="@+id/timestamp_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/pid_text"
-        android:layout_toRightOf="@+id/pid_text"
-        android:maxLines="1"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp"
-        style="@style/LogcatListItem"
-        tools:text="12 June 2011"/>
-
-    <TextView
-        android:id="@+id/tag_text"
-        android:layout_width="@dimen/tag_width"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/pid_text"
-        android:ellipsize="end"
-        android:paddingEnd="2dp"
-        android:paddingRight="2dp"
-        style="@style/LogcatListItem"
-        tools:ignore="RtlSymmetry"
-        tools:text="SomeActivity"/>
+    <!-- Log level indicator (vertical bar) -->
+    <View
+        android:id="@+id/log_level_indicator"
+        android:layout_width="4dp"
+        android:layout_height="0dp"
+        android:background="@color/tag_color_01"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/log_level_text"
-        android:layout_width="@dimen/log_level_width"
+        style="@style/TextAppearance.Material3.LabelLarge"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pid_text"
-        android:layout_toEndOf="@+id/tag_text"
-        android:layout_toRightOf="@+id/tag_text"
-        android:gravity="center_horizontal"
+        android:layout_marginStart="8dp"
+        android:minWidth="20dp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/log_level_indicator"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="D" />
+
+    <TextView
+        android:id="@+id/tag_text"
+        style="@style/TextAppearance.Material3.TitleSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
         android:maxLines="1"
-        style="@style/LogcatListItem"
-        tools:text="D"/>
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/metadata_barrier"
+        app:layout_constraintStart_toEndOf="@id/log_level_text"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="SomeActivity" />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/metadata_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="pid_text,timestamp_text" />
 
     <TextView
-        android:id="@+id/log_output_text"
-        android:layout_width="match_parent"
+        android:id="@+id/pid_text"
+        style="@style/TextAppearance.Material3.LabelSmall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pid_text"
-        android:layout_toEndOf="@+id/source_text"
-        android:layout_toRightOf="@+id/source_text"
-        android:ellipsize="end"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp"
-        style="@style/LogcatListItem"
-        tools:text="Blah blah blah a bunch of output"/>
+        android:textColor="?attr/colorOnSurfaceVariant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="6177" />
 
     <TextView
-        android:id="@+id/classification_detail_text"
-        android:layout_width="match_parent"
+        android:id="@+id/timestamp_text"
+        style="@style/TextAppearance.Material3.LabelSmall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/log_output_text"
-        android:layout_toEndOf="@+id/source_text"
-        android:layout_toRightOf="@+id/source_text"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp"
-        android:textColor="#9E9E9E"
-        style="@style/LogcatListItem"
-        tools:text="com.instagram.android: resolved app process is using dav1d"/>
+        android:textColor="?attr/colorOnSurfaceVariant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pid_text"
+        tools:text="12 June 2011" />
 
     <TextView
         android:id="@+id/classification_text"
+        style="@style/TextAppearance.Material3.LabelSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pid_text"
-        android:layout_toEndOf="@+id/log_level_text"
-        android:layout_toRightOf="@+id/log_level_text"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:minWidth="64dp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_badge"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="2dp"
         android:textColor="@android:color/white"
-        android:gravity="center"
-        style="@style/LogcatListItem"
-        tools:text="APP AV1"/>
+        app:layout_constraintStart_toStartOf="@id/log_level_text"
+        app:layout_constraintTop_toBottomOf="@id/tag_text"
+        tools:text="APP AV1" />
 
     <TextView
         android:id="@+id/source_text"
+        style="@style/TextAppearance.Material3.LabelSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pid_text"
-        android:layout_toEndOf="@+id/classification_text"
-        android:layout_toRightOf="@+id/classification_text"
-        android:ellipsize="middle"
-        android:maxLines="1"
-        android:maxWidth="132dp"
-        android:minWidth="52dp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_badge"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="2dp"
         android:textColor="@android:color/white"
-        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/classification_text"
+        app:layout_constraintTop_toBottomOf="@id/tag_text"
+        tools:text="com.reddit.frontpage" />
+
+    <TextView
+        android:id="@+id/log_output_text"
         style="@style/LogcatListItem"
-        tools:text="com.reddit.frontpage"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="?attr/colorOnSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/log_level_text"
+        app:layout_constraintTop_toBottomOf="@id/classification_text"
+        tools:text="Blah blah blah a bunch of output" />
 
+    <TextView
+        android:id="@+id/classification_detail_text"
+        style="@style/TextAppearance.Material3.BodySmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/log_level_text"
+        app:layout_constraintTop_toBottomOf="@id/log_output_text"
+        tools:text="com.instagram.android: resolved app process is using dav1d" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
