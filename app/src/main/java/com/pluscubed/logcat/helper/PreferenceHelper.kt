@@ -1,7 +1,7 @@
 package com.pluscubed.logcat.helper
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.pluscubed.logcat.data.ColorScheme
 import com.pluscubed.logcat.util.UtilLogger
 import org.omnirom.logcat.R
@@ -45,9 +45,17 @@ object PreferenceHelper {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val defaultValue = context.getString(R.string.pref_display_limit_default)
             val key = context.getString(R.string.pref_display_limit)
-            displayLimit = try { sharedPrefs.getString(key, defaultValue)!!.toInt() } catch (e: Exception) { defaultValue.toInt() }
+            val value = sharedPrefs.getString(key, defaultValue) ?: defaultValue
+            displayLimit = try { value.toInt() } catch (e: Exception) { defaultValue.toInt() }
         }
         return displayLimit
+    }
+
+    @JvmStatic fun setDisplayLimitPreference(context: Context, limit: Int) {
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+        val key = context.getString(R.string.pref_display_limit)
+        sharedPrefs.edit().putString(key, limit.toString()).apply()
+        displayLimit = limit
     }
 
     @JvmStatic fun getShowTimestampAndPidPreference(context: Context): Boolean {

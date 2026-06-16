@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import androidx.core.content.IntentCompat
 import com.pluscubed.logcat.data.LogLine
 import com.pluscubed.logcat.data.SearchCriteria
 import com.pluscubed.logcat.helper.PreferenceHelper
@@ -28,6 +29,7 @@ import org.omnirom.logcat.R
 import java.io.IOException
 import java.util.*
 
+@Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
 class LogcatRecordingService : IntentService("AppTrackerService") {
     private val lock = Any()
     private var mReader: LogcatReader? = null
@@ -52,7 +54,7 @@ class LogcatRecordingService : IntentService("AppTrackerService") {
 
     private fun initializeReader(intent: Intent) {
         try {
-            val loader = intent.getParcelableExtra<LogcatReaderLoader>(EXTRA_LOADER)
+            val loader = IntentCompat.getParcelableExtra(intent, EXTRA_LOADER, LogcatReaderLoader::class.java)
             mReader = loader?.loadReader()
             while (mReader?.readyToRecord() == false && !mKilled) {
                 mReader?.readLine()
@@ -70,7 +72,7 @@ class LogcatRecordingService : IntentService("AppTrackerService") {
         log.d("onDestroy()")
         killProcess()
         unregisterReceiver(receiver)
-        stopForeground(true)
+        stopForeground(STOP_FOREGROUND_REMOVE)
         WidgetHelper.updateWidgets(applicationContext, false)
     }
 

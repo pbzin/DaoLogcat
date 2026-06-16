@@ -38,8 +38,8 @@ class LogcatActivity : ComponentActivity() {
                     onSettingsClick = {
                         startActivity(Intent(this, SettingsActivity::class.java))
                     },
-                    onSaveClick = {
-                        saveVisibleLog()
+                    onSaveClick = { fileName ->
+                        saveVisibleLog(fileName)
                     },
                     onFilterClick = {
                         // TODO: Implement filter dialog
@@ -61,9 +61,8 @@ class LogcatActivity : ComponentActivity() {
         super.onDestroy()
     }
 
-    private fun saveVisibleLog() {
-        val timestamp = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(Date())
-        val filename = "DaoLogcat-$timestamp.txt"
+    private fun saveVisibleLog(chosenName: String) {
+        val filename = if (chosenName.endsWith(".txt")) chosenName else "$chosenName.txt"
         val values = ContentValues().apply {
             put(MediaStore.Downloads.DISPLAY_NAME, filename)
             put(MediaStore.Downloads.MIME_TYPE, "text/plain")

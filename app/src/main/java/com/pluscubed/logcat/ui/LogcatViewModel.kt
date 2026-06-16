@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.pluscubed.logcat.data.LogLine
 import com.pluscubed.logcat.helper.PreferenceHelper
+import com.pluscubed.logcat.helper.RuntimeHelper
 import com.pluscubed.logcat.reader.LogcatReader
 import com.pluscubed.logcat.reader.LogcatReaderLoader
 import kotlinx.coroutines.*
@@ -98,10 +99,34 @@ class LogcatViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun clearLogs() {
-        synchronized(currentLines) {
-            currentLines.clear()
+        viewModelScope.launch {
+            val jobToCancel = readerJob
+            readerJob = null 
+            jobToCancel?.cancel()
+            stopReader()
+            try {
+                jobToCancel?.join()
+            } catch (e: Exception) {}
+
+            synchronized(currentLines) {
+                currentLines.clear()
+            }
+            _logLines.value = emptyList()
+
+            withContext(Dispatchers.IO) {
+                try {
+                    // Clears all buffers and waits for completion
+                    RuntimeHelper.exec(listOf("logcat", "-b", "all", "-c")).waitFor()
+                } catch (e: Exception) {
+                    try {
+                        RuntimeHelper.exec(listOf("logcat", "-c")).waitFor()
+                    } catch (e2: Exception) {}
+                }
+                delay(300) // Wait a bit for the system to process the clearing
+            }
+
+            startLogcat()
         }
-        _logLines.value = emptyList()
     }
 
     fun setFilter(query: String, minLevel: Int) {

@@ -57,6 +57,7 @@ object ServiceHelper {
         val serviceName = service.name
         val componentName = ComponentName(context.packageName, serviceName)
         val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        @Suppress("DEPRECATION")
         val procList = activityManager.getRunningServices(Int.MAX_VALUE)
         if (procList != null) {
             for (appProcInfo in procList) {

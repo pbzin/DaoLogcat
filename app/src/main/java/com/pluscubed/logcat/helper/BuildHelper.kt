@@ -44,7 +44,7 @@ object BuildHelper {
             val field: Field = clazz.getField(buildField)
             val value = field[null]
             val key = clazz.simpleName.lowercase(Locale.US) + "." + buildField.lowercase(Locale.US)
-            keysToValues[key] = value.toString()
+            keysToValues[key] = value?.toString() ?: "null"
         } catch (e: Exception) {
             // ignore
         }

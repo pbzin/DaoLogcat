@@ -6,6 +6,7 @@ import android.os.IBinder
 import com.pluscubed.logcat.util.UtilLogger
 import java.util.*
 
+@Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
 class CrazyLoggerService : IntentService("CrazyLoggerService") {
     private var kill = false
 
