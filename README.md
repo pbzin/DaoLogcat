@@ -2,44 +2,31 @@
 
 ![Icon](./app/src/main/ic_launcher-playstore.png)
 
-**DaoLogcat** é um leitor de logs (logcat) moderno para Android, focado em performance, design Material 3 e funcionalidades avançadas para desenvolvedores e entusiastas que possuem acesso **Root**.
-
-Baseado no legado do MatLog e CatLog, o DaoLogcat foi reconstruído com **Jetpack Compose** para oferecer uma experiência fluida e nativa.
+**DaoLogcat** é um leitor de logs (logcat) moderno e poderoso para Android, desenvolvido para oferecer alta performance e controle total sobre a depuração do sistema. Com uma interface baseada em **Material 3** e **Jetpack Compose**, ele combina um visual atualizado com funcionalidades essenciais para quem precisa de acesso root.
 
 ## ✨ Funcionalidades
 
-- **Captura Completa com Root**: Acesso total aos buffers do sistema (Main, System, Crash, Events, etc.).
-- **Interface Material 3**: Design moderno com suporte a temas Claro, Escuro e "Claro Suave".
-- **Filtros Avançados**: Filtre logs por tag, palavra-chave, PID ou nível de prioridade (Verbose, Debug, Info, etc.).
-- **Gerenciamento de Logs Salvos**: Organize e visualize capturas antigas diretamente no app.
-- **Limpeza Profunda**: Botão de limpeza que purga os buffers do sistema (`logcat -c`) para uma depuração limpa.
-- **Limite de Exibição Personalizável**: Configure exatamente quantas linhas deseja manter na memória (ex: 10.000, 50.000 ou mais).
-- **Exportação Fácil**: Salve logs em arquivos `.txt` ou compartilhe diretamente com outros apps.
-- **Privacidade**: Opção para omitir informações sensíveis (e-mails, números de telefone, URLs) dos logs.
+- **Captura em Tempo Real com Root**: Acesso completo a todos os buffers do sistema Android (Main, System, Crash, Events, etc.).
+- **Interface Moderna (Material 3)**: Experiência fluida com suporte a temas dinâmicos (Escuro, Claro e Claro Suave).
+- **Gerenciamento de Logs Salvos**: Acesse, visualize e compartilhe suas capturas anteriores em uma aba dedicada.
+- **Limpeza de Buffer Definitiva**: Comando de limpeza que purga os buffers do sistema (`logcat -c`) para iniciar novas capturas sem resíduos.
+- **Filtros Inteligentes**: Busque rapidamente por tags, PIDs, palavras-chave ou níveis de prioridade.
+- **Limite de Display Customizável**: Você escolhe quantas linhas o app deve manter na tela (10k, 50k, 100k+), otimizando o uso de memória.
+- **Privacidade de Dados**: Opção integrada para ocultar automaticamente dados sensíveis como números de telefone, e-mails e URLs.
+- **Exportação Rápida**: Salve como `.txt` ou compartilhe logs instantaneamente com sua equipe.
 
 ## 🛠️ Requisitos
 
-- Android 8.0+
-- **Acesso Root** (Recomendado para captura total do sistema).
-  - *Nota: Em dispositivos sem root, o app mostrará apenas seus próprios logs ou exigirá permissões via ADB.*
+- Android 8.0 ou superior.
+- **Acesso Root**: Necessário para visualizar logs de todo o sistema (sem root, apenas os logs do próprio app estarão visíveis).
 
-## 🚀 Como usar
+## 🚀 Como Iniciar
 
-1. Abra o app e conceda permissão de Superusuário.
-2. Os logs começarão a fluir em tempo real.
-3. Use o ícone de **Filtro** para encontrar o que procura.
-4. Clique no ícone de **Pasta** na barra superior para ver seus logs salvos.
-5. Ajuste o **Limite de Linhas** nas configurações para otimizar a performance no seu dispositivo.
+1. Inicie o app e autorize o acesso Root.
+2. Acompanhe o fluxo de logs instantaneamente na tela principal.
+3. Utilize os ícones na barra superior para alternar entre os **Logs Atuais** e os **Logs Salvos**.
+4. Configure o limite de linhas no menu de **Configurações** para ajustar à sua necessidade de uso.
 
 ## 📄 Licença
 
-```
-Copyright (C) 2024 DaoLogcat Devs
-
-Este programa é um software livre: você pode redistribuí-lo e/ou modificá-lo
-sob os termos da Licença Pública Geral GNU conforme publicada pela
-Free Software Foundation, versão 3 da Licença ou qualquer versão posterior.
-```
-
----
-*Baseado originalmente no MatLog de Daniel Ciao e CatLog de Nolan Lawson.*
+Este projeto é um software livre distribuído sob a licença GNU GPL v3.
