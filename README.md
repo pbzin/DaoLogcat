@@ -1,6 +1,6 @@
 # DaoLogcat 🚀
 
-![Icon](./app/src/main/ic_launcher-playstore.png)
+<img src="./app/src/main/ic_launcher-playstore.png" width="96" height="96" />
 
 **DaoLogcat** é um leitor de logs (logcat) moderno e poderoso para Android, desenvolvido para oferecer alta performance e controle total sobre a depuração do sistema. Com uma interface baseada em **Material 3** e **Jetpack Compose**, ele combina um visual atualizado com funcionalidades essenciais para quem precisa de acesso root.
 
