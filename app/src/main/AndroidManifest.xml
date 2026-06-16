@@ -20,10 +20,8 @@
         android:theme="@style/Theme.DaoLogcat"
         android:usesCleartextTraffic="true">
 
-        <!--TODO: REMOVE THIS CONFIGCHANGES ATROCITY-->
         <activity
             android:name="com.pluscubed.logcat.ui.LogcatActivity"
-            android:configChanges="screenSize|orientation"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,41 +31,10 @@
                 <action android:name="com.pluscubed.logcat.intents.LAUNCH" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts" />
-        </activity>
-
-        <activity
-            android:name="com.pluscubed.logcat.ui.RecordLogDialogActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
         </activity>
 
         <activity android:name="com.pluscubed.logcat.ui.SettingsActivity"
             android:exported="false"/>
-
-        <service android:name="com.pluscubed.logcat.LogcatRecordingService"
-            android:exported="false"/>
-
-        <service android:name="com.pluscubed.logcat.CrazyLoggerService"
-            android:exported="false"/>
-
-        <receiver
-            android:name="com.pluscubed.logcat.RecordingWidgetProvider"
-            android:icon="@mipmap/ic_launcher"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/recording_widget_info" />
-        </receiver>
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -4,12 +4,4 @@
     <dimen name="text_size_medium">14sp</dimen>
     <dimen name="text_size_large">16sp</dimen>
     <dimen name="text_size_xlarge">18sp</dimen>
-    <dimen name="log_level_width">15dp</dimen>
-    <dimen name="tag_width">70dp</dimen>
-    <dimen name="pid_width">85dp</dimen>
-    <dimen name="fab_compat_margin">24dp</dimen>
-    <dimen name="content_side_margin">6dp</dimen>
-    <dimen name="min_widget_width">48dp</dimen>
-    <dimen name="min_widget_height">48dp</dimen>
-    <dimen name="max_widget_width">140dp</dimen>
 </resources>

@@ -11,7 +11,6 @@ object PreferenceHelper {
     const val THEME_DARK = 1
     const val THEME_LIGHT = 2
 
-    private const val WIDGET_EXISTS_PREFIX = "widget_"
     private const val FULL_BUFFER_MIGRATION_KEY = "daologcat_full_buffer_migrated"
     private const val THEME_MODE_KEY = "daologcat_theme_mode"
     private var textSize = -1f
@@ -101,17 +100,6 @@ object PreferenceHelper {
     }
     @JvmStatic fun setJellybeanRootRan(context: Context) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(context.getString(R.string.pref_ran_jellybean_su_update), true).apply()
-    }
-    @JvmStatic fun getWidgetExistsPreference(context: Context, id: Int): Boolean = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(WIDGET_EXISTS_PREFIX + id, false)
-    @JvmStatic fun setWidgetExistsPreference(context: Context, ids: IntArray) {
-        val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
-        ids.forEach { editor.putBoolean(WIDGET_EXISTS_PREFIX + it, true) }
-        editor.apply()
-    }
-    @JvmStatic fun clearWidgetExistsPreference(context: Context, id: Int) = PreferenceManager.getDefaultSharedPreferences(context).edit().remove(WIDGET_EXISTS_PREFIX + id).apply()
-    @JvmStatic fun remapWidgetExistsPreference(context: Context, old: Int, new: Int) {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        prefs.edit().putBoolean(WIDGET_EXISTS_PREFIX + new, true).remove(WIDGET_EXISTS_PREFIX + old).apply()
     }
     @JvmStatic fun getLogLinePeriodPreference(context: Context): Int = 200
     @JvmStatic fun isScrubberEnabled(context: Context): Boolean = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("scrubber", false)
