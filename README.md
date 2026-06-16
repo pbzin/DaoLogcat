@@ -1,58 +1,45 @@
-![Icon](./app/src/main/res/mipmap-hdpi/ic_launcher.png)MatLog
-=========
-It's CatLog, but with material goodness.
+# DaoLogcat 🚀
 
-Graphical log reader for Android.
+![Icon](./app/src/main/ic_launcher-playstore.png)
 
-[![Get it on Google Play](http://i.imgur.com/PeDVOwW.png)](https://play.google.com/store/apps/details?id=com.pluscubed.matlog)
+**DaoLogcat** é um leitor de logs (logcat) moderno para Android, focado em performance, design Material 3 e funcionalidades avançadas para desenvolvedores e entusiastas que possuem acesso **Root**.
 
-Based on Nolan Lawson's CatLog: [Google Play][1], [GitHub][2]
+Baseado no legado do MatLog e CatLog, o DaoLogcat foi reconstruído com **Jetpack Compose** para oferecer uma experiência fluida e nativa.
 
-Overview
----------
-MatLog is a free and open-source material-style log reader for Android based on CatLog.
+## ✨ Funcionalidades
 
-It shows a scrolling (tailed) view of the Android "logcat" system log, 
-hence the goofy name.  It also allows you to record logs in real time, send logs via email, 
-and filter using a variety of criteria.
+- **Captura Completa com Root**: Acesso total aos buffers do sistema (Main, System, Crash, Events, etc.).
+- **Interface Material 3**: Design moderno com suporte a temas Claro, Escuro e "Claro Suave".
+- **Filtros Avançados**: Filtre logs por tag, palavra-chave, PID ou nível de prioridade (Verbose, Debug, Info, etc.).
+- **Gerenciamento de Logs Salvos**: Organize e visualize capturas antigas diretamente no app.
+- **Limpeza Profunda**: Botão de limpeza que purga os buffers do sistema (`logcat -c`) para uma depuração limpa.
+- **Limite de Exibição Personalizável**: Configure exatamente quantas linhas deseja manter na memória (ex: 10.000, 50.000 ou mais).
+- **Exportação Fácil**: Salve logs em arquivos `.txt` ou compartilhe diretamente com outros apps.
+- **Privacidade**: Opção para omitir informações sensíveis (e-mails, números de telefone, URLs) dos logs.
 
-FAQs
--------------
-Taken from CatLog's FAQ:
+## 🛠️ Requisitos
 
-#### Where are the logs saved?
+- Android 8.0+
+- **Acesso Root** (Recomendado para captura total do sistema).
+  - *Nota: Em dispositivos sem root, o app mostrará apenas seus próprios logs ou exigirá permissões via ADB.*
 
-On the SD card, under ```/sdcard/catlog/saved_logs/```.
+## 🚀 Como usar
 
-#### I can't see any logs!
+1. Abra o app e conceda permissão de Superusuário.
+2. Os logs começarão a fluir em tempo real.
+3. Use o ícone de **Filtro** para encontrar o que procura.
+4. Clique no ícone de **Pasta** na barra superior para ver seus logs salvos.
+5. Ajuste o **Limite de Linhas** nas configurações para otimizar a performance no seu dispositivo.
 
-This problem typically shows up on custom ROMs.  First off, try an alternative logging app, to verify that
-the problem is with your ROM and not MatLog.
-
-Next, see if your ROM offers system-wide settings to disable logging.  Be sure to reboot after you change anything.
-
-If that still doesn't work, you can contact the creator of your ROM to file a bug/RFE.
-
-License
----------
-```
-Copyright (C) 2017  Daniel Ciao
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## 📄 Licença
 
 ```
+Copyright (C) 2024 DaoLogcat Devs
 
-[1]: https://play.google.com/store/apps/details?id=com.nolanlawson.logcat
-[2]: https://github.com/nolanlawson/Catlog
-[3]: https://plus.google.com/u/0/communities/108705871773878445106
+Este programa é um software livre: você pode redistribuí-lo e/ou modificá-lo
+sob os termos da Licença Pública Geral GNU conforme publicada pela
+Free Software Foundation, versão 3 da Licença ou qualquer versão posterior.
+```
+
+---
+*Baseado originalmente no MatLog de Daniel Ciao e CatLog de Nolan Lawson.*
