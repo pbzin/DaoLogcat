@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.preference.PreferenceManager
 import com.pluscubed.logcat.data.ColorScheme
 import com.pluscubed.logcat.util.UtilLogger
-import org.omnirom.logcat.R
+import com.pb.daologcat.R
 
 object PreferenceHelper {
     const val THEME_SYSTEM = 0

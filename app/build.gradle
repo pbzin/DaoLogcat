@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'org.omnirom.logcat'
+    namespace 'com.pb.daologcat'
     compileSdk = 37
 
     defaultConfig {

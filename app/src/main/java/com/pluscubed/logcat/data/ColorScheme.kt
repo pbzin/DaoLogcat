@@ -1,7 +1,7 @@
 package com.pluscubed.logcat.data
 
 import android.content.Context
-import org.omnirom.logcat.R
+import com.pb.daologcat.R
 
 enum class ColorScheme(private val tagColorsResource: Int) {
     Default(R.array.light_theme_colors);

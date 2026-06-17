@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 import androidx.compose.ui.input.pointer.pointerInput
-import org.omnirom.logcat.R
+import com.pb.daologcat.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

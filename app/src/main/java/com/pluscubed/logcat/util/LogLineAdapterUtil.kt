@@ -3,7 +3,7 @@ import android.content.Context
 import android.util.Log
 import androidx.core.content.ContextCompat
 import com.pluscubed.logcat.helper.PreferenceHelper
-import org.omnirom.logcat.R
+import com.pb.daologcat.R
 object LogLineAdapterUtil {
     const val LOG_WTF = 100
     @JvmStatic fun getBackgroundColorForLogLevel(context: Context, logLevel: Int): Int {

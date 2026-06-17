@@ -8,7 +8,7 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.pluscubed.logcat.util.UtilLogger
-import org.omnirom.logcat.R
+import com.pb.daologcat.R
 import java.io.*
 import java.util.regex.Pattern
 

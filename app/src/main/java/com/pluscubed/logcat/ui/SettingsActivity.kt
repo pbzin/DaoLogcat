@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.pluscubed.logcat.helper.PreferenceHelper
 import com.pluscubed.logcat.ui.theme.DaoLogcatTheme
-import org.omnirom.logcat.R
+import com.pb.daologcat.R
 
 private const val PIX_KEY = "5198a8b3-6b89-4475-aec1-5adcfcfd12cf"
 private const val BITCOIN_ADDRESS = "1GkpDZDHYov7WZLs54Nv19f2KUoZPcACs2"
@@ -122,7 +122,7 @@ fun SettingsList(
                 checked = showPidTimestamp,
                 onCheckedChange = {
                     val sharedPrefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
-                    sharedPrefs.edit().putBoolean(context.getString(org.omnirom.logcat.R.string.pref_show_timestamp), it).apply()
+                    sharedPrefs.edit().putBoolean(context.getString(com.pb.daologcat.R.string.pref_show_timestamp), it).apply()
                     PreferenceHelper.clearCache()
                     showPidTimestamp = it
                 }

@@ -1,4 +1,4 @@
-package org.omnirom.logcat
+package com.pb.daologcat
 
 import android.app.Application
 import com.google.android.material.color.DynamicColors
