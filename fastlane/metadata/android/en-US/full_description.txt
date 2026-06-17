@@ -1,0 +1,8 @@
+DaoLogcat is a powerful and modern logcat reader built with Jetpack Compose and Material 3. It provides full access to Android system buffers (Main, System, Crash, Events) on rooted devices.
+
+Features:
+- Real-time log capture with root access.
+- Advanced filtering by tag, keyword, or priority.
+- Deep buffer clearing (logcat -c).
+- Customizable display limits and sensitive data scrubbing.
+- Material 3 interface with dynamic themes.

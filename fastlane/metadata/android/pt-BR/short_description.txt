@@ -1,0 +1,1 @@
+Leitor de logs logcat moderno para dispositivos com root.

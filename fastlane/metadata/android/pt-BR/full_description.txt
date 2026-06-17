@@ -1,0 +1,11 @@
+DaoLogcat é um leitor de logs moderno e poderoso para Android, desenvolvido para oferecer alta performance e controle total sobre a depuração do sistema.
+
+Com uma interface baseada em Material 3 e Jetpack Compose, ele combina um visual atualizado com funcionalidades essenciais para quem precisa de acesso root.
+
+Funcionalidades:
+- Captura em Tempo Real com Root.
+- Filtros Inteligentes por tag, PID ou palavra-chave.
+- Limpeza de Buffer Definitiva (logcat -c).
+- Limite de Display Customizável.
+- Privacidade de Dados (ocultar info sensível).
+- Experiência fluida com Material 3.

@@ -1,0 +1,1 @@
+Modern Android logcat reader for rooted devices.
