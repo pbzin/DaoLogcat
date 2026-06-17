@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.ClipEntry
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import android.widget.Toast
@@ -28,6 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 import androidx.compose.ui.input.pointer.pointerInput
+import org.omnirom.logcat.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -94,7 +96,7 @@ fun LogcatScreen(
                         Text("DaoLogcat")
                         if (currentTab == 0) {
                             Text(
-                                text = if (isPaused) "Paused" else status,
+                                text = if (isPaused) stringResource(R.string.paused) else status,
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -109,33 +111,33 @@ fun LogcatScreen(
                         }) {
                             Icon(
                                 Icons.Default.FilterList,
-                                contentDescription = "Filter",
+                                contentDescription = stringResource(R.string.filter),
                                 tint = if (hasFilter) MaterialTheme.colorScheme.primary
                                 else LocalContentColor.current
                             )
                         }
                         IconButton(onClick = { showSaveDialog = true }) {
-                            Icon(Icons.Default.Save, contentDescription = "Save")
+                            Icon(Icons.Default.Save, contentDescription = stringResource(R.string.save))
                         }
                     }
                     
                     IconButton(onClick = { currentTab = 0 }) {
                         Icon(
                             Icons.Default.List,
-                            contentDescription = "Logs",
+                            contentDescription = stringResource(R.string.logs),
                             tint = if (currentTab == 0) MaterialTheme.colorScheme.primary else LocalContentColor.current
                         )
                     }
                     IconButton(onClick = { currentTab = 1 }) {
                         Icon(
                             Icons.Default.Folder,
-                            contentDescription = "Saved Logs",
+                            contentDescription = stringResource(R.string.saved_logs),
                             tint = if (currentTab == 1) MaterialTheme.colorScheme.primary else LocalContentColor.current
                         )
                     }
 
                     IconButton(onClick = onSettingsClick) {
-                        Icon(Icons.Default.Settings, contentDescription = "Settings")
+                        Icon(Icons.Default.Settings, contentDescription = stringResource(R.string.settings_title))
                     }
                 }
             )
@@ -155,7 +157,7 @@ fun LogcatScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.KeyboardArrowUp,
-                                contentDescription = "Ir para logs recentes"
+                                contentDescription = stringResource(R.string.jump_to_latest_logs)
                             )
                         }
                     }
@@ -167,7 +169,7 @@ fun LogcatScreen(
                     ) {
                         Icon(
                             imageVector = if (isPaused) Icons.Default.PlayArrow else Icons.Default.Pause,
-                            contentDescription = if (isPaused) "Resume" else "Pause"
+                            contentDescription = if (isPaused) stringResource(R.string.resume) else stringResource(R.string.pause)
                         )
                     }
                 }
@@ -178,10 +180,10 @@ fun LogcatScreen(
                 BottomAppBar(
                     actions = {
                         IconButton(onClick = { viewModel.clearLogs() }) {
-                            Icon(Icons.Default.Delete, contentDescription = "Clear")
+                            Icon(Icons.Default.Delete, contentDescription = stringResource(R.string.clear))
                         }
                         IconButton(onClick = { showFilterDialog = true }) {
-                            Icon(Icons.Default.Search, contentDescription = "Search")
+                            Icon(Icons.Default.Search, contentDescription = stringResource(R.string.search))
                         }
                         if (hasFilter) {
                             AssistChip(
@@ -193,7 +195,7 @@ fun LogcatScreen(
                                     )
                                 },
                                 leadingIcon = {
-                                    Icon(Icons.Default.Close, contentDescription = "Clear filter")
+                                    Icon(Icons.Default.Close, contentDescription = stringResource(R.string.clear_filter))
                                 }
                             )
                         }
@@ -228,7 +230,7 @@ fun LogcatScreen(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "No logs yet",
+                            text = stringResource(R.string.no_logs_yet),
                             style = MaterialTheme.typography.titleMedium
                         )
                         Text(
@@ -237,7 +239,7 @@ fun LogcatScreen(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Button(onClick = { viewModel.startLogcat() }) {
-                            Text("Retry")
+                            Text(stringResource(R.string.retry))
                         }
                     }
                 } else {
@@ -264,7 +266,7 @@ fun LogcatScreen(
                                         scope.launch {
                                             clipboard.setClipEntry(ClipEntry(ClipData.newPlainText("Logcat", logLine.getOriginalLine())))
                                         }
-                                        Toast.makeText(context, "Log copiado", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, context.getString(R.string.log_copied), Toast.LENGTH_SHORT).show()
                                     }
                                 )
                                 HorizontalDivider(
@@ -330,15 +332,15 @@ fun SaveLogDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Save Log") },
+        title = { Text(stringResource(R.string.save_log)) },
         text = {
             Column {
-                Text("Enter a name for the log file:")
+                Text(stringResource(R.string.save_log_message))
                 Spacer(modifier = Modifier.height(8.dp))
                 OutlinedTextField(
                     value = fileName,
                     onValueChange = { fileName = it },
-                    label = { Text("Filename") },
+                    label = { Text(stringResource(R.string.filename)) },
                     suffix = { Text(".txt") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
@@ -352,12 +354,12 @@ fun SaveLogDialog(
                     onConfirm(finalName)
                 }
             ) {
-                Text("Save")
+                Text(stringResource(R.string.save))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel))
             }
         }
     )
@@ -439,27 +441,27 @@ private fun FilterDialog(
     var query by remember(currentQuery) { mutableStateOf(currentQuery) }
     var minLevel by remember(currentMinLevel) { mutableStateOf(currentMinLevel) }
     val levels = listOf(
-        "Todos" to 0,
+        stringResource(R.string.all_levels) to 0,
         "Verbose" to 2,
         "Debug" to 3,
         "Info" to 4,
-        "Avisos" to 5,
-        "Erros" to 6
+        stringResource(R.string.warnings) to 5,
+        stringResource(R.string.errors) to 6
     )
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Filtrar logs") },
+        title = { Text(stringResource(R.string.filter_logs)) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 OutlinedTextField(
                     value = query,
                     onValueChange = { query = it },
-                    label = { Text("Texto, tag, app ou categoria") },
+                    label = { Text(stringResource(R.string.filter_query_hint)) },
                     singleLine = true
                 )
                 Text(
-                    text = "Mostrar a partir de",
+                    text = stringResource(R.string.minimum_level),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -480,25 +482,26 @@ private fun FilterDialog(
         },
         confirmButton = {
             TextButton(onClick = { onApply(query, minLevel) }) {
-                Text("Aplicar")
+                Text(stringResource(R.string.apply))
             }
         },
         dismissButton = {
             TextButton(onClick = onClear) {
-                Text("Limpar")
+                Text(stringResource(R.string.clear))
             }
         }
     )
 }
 
+@Composable
 private fun activeFilterLabel(query: String, minLevel: Int): String {
     val level = when (minLevel) {
         2 -> "Verbose+"
         3 -> "Debug+"
         4 -> "Info+"
-        5 -> "Avisos+"
-        6 -> "Erros"
-        else -> "Todos"
+        5 -> stringResource(R.string.warnings_short)
+        6 -> stringResource(R.string.errors_short)
+        else -> stringResource(R.string.all_levels)
     }
     return if (query.isEmpty()) level else "$level: $query"
 }
