@@ -1,10 +1,13 @@
-# DaoLogcat
+# DaoLogcat 🚀
 
 <img src="./app/src/main/ic_launcher-playstore.png" width="96" height="96" alt="DaoLogcat icon" />
 
-DaoLogcat is a modern Android logcat reader focused on rooted devices, full-buffer capture, fast filtering, saved logs and a Material 3 / Jetpack Compose interface.
+[![Repo Views](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fpbzin%2FDaoLogcat&label=repo%20views&countColor=%230e75b6&style=flat)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fpbzin%2FDaoLogcat)
+![Downloads](https://img.shields.io/github/downloads/pbzin/DaoLogcat/total?style=flat&color=0e75b6&label=downloads)
 
-## Screenshots
+**DaoLogcat** é um leitor de logs (logcat) moderno e poderoso para Android, desenvolvido para oferecer alta performance e controle total sobre a depuração do sistema. Com uma interface baseada em **Material 3** e **Jetpack Compose**, ele combina um visual atualizado com funcionalidades essenciais para quem precisa de acesso root.
+
+## 📸 Screenshots
 
 <p>
   <img src="./docs/screenshots/daologcat-main.png" width="260" alt="DaoLogcat live log view" />
@@ -12,33 +15,34 @@ DaoLogcat is a modern Android logcat reader focused on rooted devices, full-buff
   <img src="./docs/screenshots/daologcat-saved-logs.png" width="260" alt="DaoLogcat saved logs" />
 </p>
 
-## Features
+## ✨ Funcionalidades
 
-- Root logcat capture across Android system buffers.
-- Live log stream with pause, clear, search and level filtering.
-- Process, package and SELinux-oriented log hints.
-- Saved log browser with open, share and delete actions.
-- Configurable display limit for large captures.
-- Optional sensitive-data scrubber for URLs, phone numbers and emails.
-- Dynamic Material 3 theme support.
+- **Captura em Tempo Real com Root**: Acesso completo a todos os buffers do sistema Android (Main, System, Crash, Events, etc.).
+- **Interface Moderna (Material 3)**: Experiência fluida com suporte a temas dinâmicos (Escuro, Claro e Claro Suave).
+- **Gerenciamento de Logs Salvos**: Acesse, visualize e compartilhe suas capturas anteriores em uma aba dedicada.
+- **Limpeza de Buffer Definitiva**: Comando de limpeza que purga os buffers do sistema (`logcat -c`) para iniciar novas capturas sem resíduos.
+- **Filtros Inteligentes**: Busque rapidamente por tags, PIDs, palavras-chave ou níveis de prioridade.
+- **Limite de Display Customizável**: Você escolhe quantas linhas o app deve manter na tela (10k, 50k, 100k+), otimizando o uso de memória.
+- **Privacidade de Dados**: Opção integrada para ocultar automaticamente dados sensíveis como números de telefone, e-mails e URLs.
+- **Exportação Rápida**: Salve como `.txt` ou compartilhe logs instantaneamente com sua equipe.
 
-## Requirements
+## 🛠️ Requisitos
 
-- Android 12 or newer.
-- Root access for full system log visibility. Without root, Android only exposes logs available to the app itself.
+- **Android 12.0 (SDK 31)** ou superior.
+- **Acesso Root**: Necessário para visualizar logs de todo o sistema (sem root, apenas os logs do próprio app estarão visíveis).
 
-## Usage
+## 🚀 Como Iniciar
 
-1. Install and open DaoLogcat.
-2. Grant root access when prompted.
-3. Use the top bar to switch between live logs, saved logs and settings.
-4. Use search/filter controls to narrow noisy captures, then save or share the result when needed.
+1. Inicie o app e autorize o acesso Root.
+2. Acompanhe o fluxo de logs instantaneamente na tela principal.
+3. Utilize os ícones na barra superior para alternar entre os **Logs Atuais** e os **Logs Salvos**.
+4. Configure o limite de linhas no menu de **Configurações** para ajustar à sua necessidade de uso.
 
-## License
+## 📄 Licença
 
-DaoLogcat is distributed under the GNU GPL v3 license.
+Este projeto é um software livre distribuído sob a licença GNU GPL v3.
 
-## Support My Work
+## ☕ Apoie o meu trabalho
 
 <p align="center">
   <a href="https://buymeacoffee.com/pbzin">
