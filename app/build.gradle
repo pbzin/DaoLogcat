@@ -45,6 +45,11 @@ android {
         compose true
     }
 
+    configurations.all {
+        exclude group: 'io.opencensus', module: 'opencensus-api'
+        exclude group: 'io.opencensus', module: 'opencensus-proto'
+        exclude group: 'io.perfmark', module: 'perfmark-api'
+    }
 }
 
 dependencies {
